@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.18",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "name": "server",
+  "version": "1.0.0",
+  "main": "server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node server.ts",
+    "build": "tsc",
+    "dev": "nodemon --exec \"ts-node --esm server.ts\""
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
