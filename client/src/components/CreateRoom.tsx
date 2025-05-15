@@ -1,15 +1,22 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { createRoom } from '../services/apiCreateRoom';
 
 function CreateRoom() {
   const [name, setName] = useState('');
   const [key, setKey] = useState<string | null>(null);
-  // const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
-  // const handleCreateRoom = () => {
-  //   // navigate(`/room/${roomId}?name=${encodeURIComponent(name)}`);
-  // };
+  const handleCreateRoom = async () => {
+    try {
+      const roomId = await createRoom(key);
+      navigate(`/room/${roomId}?name=${encodeURIComponent(name)}`);
+    } catch {
+      setError('Failed to create room. Please try again.');
+    }
+  };
 
   const handlePrivateRoom = () => {
     if (key) {
@@ -59,11 +66,13 @@ function CreateRoom() {
       )}
 
       <button
-        onClick={() => {}}
+        onClick={handleCreateRoom}
         className="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-xl text-lg transition cursor-pointer"
       >
         Create Room
       </button>
+
+      {error && <div className="text-red-500 text-center">{error}</div>}
     </div>
   );
 }
