@@ -48,7 +48,7 @@ function CreateRoom() {
 
       {key && (
         <div className="flex flex-center justify-center gap-4">
-          <span>{key}</span>
+          <span className="text-xl">{key}</span>
           <button
             onClick={handleCopyKey}
             className="text-gray-100 hover:underline active:text-blue-600 transition cursor-pointer"
